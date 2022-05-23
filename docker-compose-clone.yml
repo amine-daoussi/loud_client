@@ -25,7 +25,7 @@ services:
     ports:
       - "3050:80"
 
-  loud-api:
+  api:
     # depends_on:
     #   - mongodb
     build: ./loud_server
@@ -45,7 +45,7 @@ services:
       - backend
       - frontend
 
-  loud-ui:
+  client:
     # depends_on:
     #   - loud_server
     build:
