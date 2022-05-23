@@ -63,7 +63,7 @@
     "lint:staged": "lint-staged",
     "lint:eslint": "eslint --ignore-pattern '!.eslintrc.js'",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --runInBand --forceExit src/*",
     "eject": "react-scripts eject"
