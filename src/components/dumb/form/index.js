@@ -29,9 +29,11 @@ const MailForm = ({ handleClose, setOpenToast, product }) => {
   const classes = useStyles();
   //eslint-disable-next-line
   const [mailResponse, setMailResponse] = useState();
+  console.log('mailResponse', mailResponse);
 
   const sendMail = data => {
-    return fetch('http://localhost:4001/api/forma', {
+    return fetch('/api/forma', {
+      // return fetch('/api/forma', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

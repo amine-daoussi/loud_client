@@ -68,11 +68,6 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --runInBand --forceExit src/*",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.js": [
       "prettier --write",
