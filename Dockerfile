@@ -22,7 +22,8 @@ RUN npm run build
 # CMD nginx -g 'daemon off;'
 
 
-FROM nginx
+# FROM nginx
+FROM nginx:1.17.0-alpine
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /loud-ui/build /usr/share/nginx/html
 
