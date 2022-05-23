@@ -23,7 +23,7 @@ RUN npm run build
 
 
 FROM nginx
-COPY /nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./loud_client/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /loud-ui/build /usr/share/nginx/html
 
 CMD nginx -g 'daemon off;'
