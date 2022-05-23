@@ -1,30 +1,39 @@
-# Stage 1
-FROM node:14 as build-stage
+# # Stage 1
+# FROM node:14 as build-stage
 
-WORKDIR /loud-ui
-COPY package.json .
-RUN npm install
-COPY . .
+# WORKDIR /loud-ui
+# COPY package.json .
+# RUN npm install
+# COPY . .
 
-# ARG REACT_APP_API_BASE_URL
-# ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
+# # ARG REACT_APP_API_BASE_URL
+# # ENV REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL
 
-RUN npm run build
+# RUN npm run build
 
-# Stage 2
+# # Stage 2
+# # FROM nginx:1.17.0-alpine
+
+# # COPY --from=build-stage /loud_client/build /usr/share/nginx/html
+# # COPY --from=build-stage /loud_client/build /usr/share/nginx/test
+# # EXPOSE $REACT_DOCKER_PORT
+# # EXPOSE 3000
+
+# # CMD nginx -g 'daemon off;'
+
+
+# # FROM nginx
 # FROM nginx:1.17.0-alpine
-
-# COPY --from=build-stage /loud_client/build /usr/share/nginx/html
-# COPY --from=build-stage /loud_client/build /usr/share/nginx/test
-# EXPOSE $REACT_DOCKER_PORT
-# EXPOSE 3000
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+# COPY --from=build-stage  /loud-ui/build /usr/share/nginx/html
 
 # CMD nginx -g 'daemon off;'
 
 
-# FROM nginx
-FROM nginx:1.17.0-alpine
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY --from=build-stage  /loud-ui/build /usr/share/nginx/html
-
-CMD nginx -g 'daemon off;'
+FROM node:alpine
+WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+COPY ./ ./
+RUN npm i
+CMD ["npm", "run", "start"]
