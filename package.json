@@ -68,7 +68,6 @@
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles --runInBand --forceExit src/*",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:4001",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
