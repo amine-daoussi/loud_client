@@ -31,9 +31,9 @@ services:
     build: ./loud_server
     restart: unless-stopped
     # env_file: ./.env
-    ports:
+    # ports:
       # - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-      - 4000
+      # - 4000
     # environment:
     #   - DB_HOST=mongodb
     #   - DB_USER=$MONGODB_USER
@@ -52,9 +52,9 @@ services:
       context: ./loud_client
       # args:
       #   - REACT_APP_API_BASE_URL=$CLIENT_API_BASE_URL
-    ports:
+    # ports:
       # - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
-      - 3000
+      # - 3000
     networks:
       - frontend
 
