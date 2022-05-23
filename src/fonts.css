@@ -1,0 +1,22 @@
+@font-face {
+  font-family: 'HelveticaNeue';
+  font-style: normal;
+  font-weight: 400;
+  src: local('HelveticaNeue'), local('HelveticaNeue'), url('./fonts/HelveticaNeueLTStd-Roman.otf') format('opentype');
+}
+@font-face {
+  font-family: 'HelveticaNeueBold';
+  font-style: normal;
+  font-weight: 400;
+  src: local('HelveticaNeueBold'), local('HelveticaNeueBold'),
+    url('./fonts/HelveticaNeueLTStd-BdEx.otf') format('opentype');
+}
+
+body,
+html,
+a {
+  font-family: 'HelveticaNeue' !important;
+}
+.description {
+  font-family: 'HelveticaNeueBold';
+}

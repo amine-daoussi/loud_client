@@ -1,0 +1,118 @@
+{
+  "name": "loud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Amine Daoussi",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/preset-env": "^7.8.6",
+    "@babel/preset-react": "^7.8.3",
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@material-ui/core": "^4.9.4",
+    "@material-ui/icons": "^4.9.1",
+    "@mui/material": "^5.1.1",
+    "@testing-library/dom": "^6.12.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@typescript-eslint/eslint-plugin": "2",
+    "@typescript-eslint/parser": "2",
+    "antd": "^4.16.13",
+    "axios": "^0.19.2",
+    "babel-eslint": "10.0.3",
+    "babel-polyfill": "^6.26.0",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "6.3.0",
+    "eslint-config-react-app": "5.0.2",
+    "eslint-loader": "3.0.0",
+    "eslint-plugin-flowtype": "3",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "final-form": "^4.20.2",
+    "flag-icon-css": "^4.1.5",
+    "glob-parent": "3.1.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "ramda": "^0.27.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-final-form": "^6.5.3",
+    "react-intl": "^5.15.3",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.0",
+    "react-spring": "^9.3.1",
+    "react-swipeable-views": "^0.13.9",
+    "react-world-flags": "^1.4.0",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-logger": "^3.0.6"
+  },
+  "scripts": {
+    "lint": "eslint --ignore-pattern '!.eslintrc.js' src/*",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "lint:staged": "lint-staged",
+    "lint:eslint": "eslint --ignore-pattern '!.eslintrc.js'",
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --runInBand --forceExit src/*",
+    "eject": "react-scripts eject"
+  },
+  "proxy": "http://localhost:4001",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "npm run lint:eslint"
+    ],
+    "*.(css, json)": [
+      "prettier --write"
+    ]
+  },
+  "babel": {
+    "exclude": [],
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "babel-polyfill",
+      "@testing-library/jest-dom/extend-expect"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.{js,jsx}"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "css-loader": "^5.2.0"
+  }
+}
