@@ -140,7 +140,7 @@
 # CMD npm start
 
 FROM node:alpine
-# WORKDIR /app
+WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
