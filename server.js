@@ -55,11 +55,16 @@ app.post('mail/forma', (req, res) => {
 });
 
 // add middlewares
-const root = require('path').join(__dirname, 'build');
-app.use(express.static(root));
+// const root = require('path').join(__dirname, 'build');
+// app.use(express.static(root));
+
+// app.use(compression());
+app.use('/', express.static(path.resolve(process.cwd(), 'build')));
 
 app.use('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  // res.sendFile(path.join(__dirname, 'build', 'index.html'));
+
+  res.sendFile(path.resolve(path.resolve(process.cwd(), 'build'), 'index.html'));
 });
 
 const port = 4000;

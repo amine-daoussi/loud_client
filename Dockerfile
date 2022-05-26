@@ -147,19 +147,45 @@
 # RUN yarn 
 # CMD ["yarn", "start:node"]
 
-FROM node:10 AS ui-build
-WORKDIR /usr/src/app
-COPY . ./my-app/
-RUN  cd my-app && npm install && npm run build
+# FROM node:10 AS ui-build
+# WORKDIR /usr/src/app
+# COPY . ./my-app/
+# RUN  cd my-app && npm install && npm run build
 
 
-FROM node:10 AS server-build
-WORKDIR /root/
-COPY --from=ui-build /usr/src/app/my-app/build ./my-app/build
-# COPY api/package*.json ./api/
-# RUN cd api && npm install
-# COPY api/server.js ./api/
+# FROM node:10 AS server-build
+# # WORKDIR /root/
+# COPY --from=ui-build /usr/src/app/my-app/build ./my-app/build
+# # COPY api/package*.json ./api/
+# # RUN cd api && npm install
+# # COPY api/server.js ./api/
 
-EXPOSE 4000
+# EXPOSE 4000
 
-CMD ["node", "./server.js"]
+# CMD ["node", "./server.js"]
+
+
+FROM node:10
+# WORKDIR /usr/app
+# RUN mkdir -p /usr/src/sch_website
+RUN mkdir -p /usr/src/app
+
+# Install PM2 globally
+# RUN npm install --global pm2
+
+COPY package*.json ./
+RUN npm install
+# COPY . .
+
+COPY ./ ./
+
+ARG APP_ENV
+ENV APP_ENV=$APP_ENV
+
+RUN npm run build
+
+EXPOSE 3000
+
+USER node
+
+ENTRYPOINT [ "npm", "run", "start:node"]
