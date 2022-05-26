@@ -82,50 +82,67 @@
 
 # ===========> try 4
 # stage1 as builder
-FROM node:10-alpine as builder
+# FROM node:10-alpine as builder
 
-# copy the package.json to install dependencies
-# COPY package.json package-lock.json ./
+# # copy the package.json to install dependencies
+# # COPY package.json package-lock.json ./
 
-# # Install the dependencies and make the folder
-# # RUN npm install && mkdir /app && mv ./node_modules ./app
-# RUN yarn && mkdir /app && mv ./node_modules ./app
+# # # Install the dependencies and make the folder
+# # # RUN npm install && mkdir /app && mv ./node_modules ./app
+# # RUN yarn && mkdir /app && mv ./node_modules ./app
+
+# # WORKDIR /app
+
+# # COPY . .
 
 # WORKDIR /app
+# COPY package.json ./
+# COPY package-lock.json ./
+# COPY ./ ./
+# RUN yarn 
 
+
+# # Build the project and copy the files
+# # RUN npm run build
+# RUN yarn build
+
+# CMD ["yarn", "start:node"]
+
+# FROM nginx:alpine
+
+# #!/bin/sh
+
+# # COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
+
+# ## Remove default nginx index page
+# RUN rm -rf /usr/share/nginx/html/*
+
+
+# RUN rm /etc/nginx/conf.d/*
+
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# # Copy from the stahg 1
+# # COPY --from=builder /app/build /usr/share/nginx/html
+
+# EXPOSE 4000 80
+
+# # ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+
+
+# FROM node:14
+
+# WORKDIR /bezkoder-api
+# COPY package.json .
+# RUN npm install
 # COPY . .
+# CMD npm start
 
+FROM node:alpine
 WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
 RUN yarn 
-
-
-# Build the project and copy the files
-# RUN npm run build
-RUN yarn build
-
-CMD ["yarn", "start:node"]
-
-FROM nginx:alpine
-
-#!/bin/sh
-
-# COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
-
-## Remove default nginx index page
-RUN rm -rf /usr/share/nginx/html/*
-
-
-RUN rm /etc/nginx/conf.d/*
-
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Copy from the stahg 1
-# COPY --from=builder /app/build /usr/share/nginx/html
-
-EXPOSE 4000 80
-
-# ENTRYPOINT ["nginx", "-g", "daemon off;"]
-
+CMD ["yarn", "start"]
