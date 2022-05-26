@@ -61,7 +61,9 @@ app.post('mail/forma', (req, res) => {
 // app.use(compression());
 app.use('/', express.static(path.resolve(process.cwd(), 'build')));
 
-app.use('/*', (req, res) => {
+// app.use('/*', (req, res) => {
+// jareb hedhy
+app.use('*', (req, res) => {
   // res.sendFile(path.join(__dirname, 'build', 'index.html'));
 
   res.sendFile(path.resolve(path.resolve(process.cwd(), 'build'), 'index.html'));
