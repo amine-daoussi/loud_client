@@ -145,4 +145,4 @@ COPY package.json ./
 COPY package-lock.json ./
 COPY ./ ./
 RUN yarn 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:node"]
