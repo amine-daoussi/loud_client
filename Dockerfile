@@ -1,3 +1,4 @@
+# ===========> try 1 
 # # Stage 1
 # FROM node:14 as build-stage
 
@@ -38,6 +39,48 @@
 # RUN npm i
 # CMD ["npm", "run", "start"]
 
+
+# ===========> try 2
+# stage1 as builder
+# FROM node:10-alpine as builder
+
+# # copy the package.json to install dependencies
+# COPY package.json package-lock.json ./
+
+# # Install the dependencies and make the folder
+# RUN npm install && mkdir /react-ui && mv ./node_modules ./react-ui
+
+# WORKDIR /react-ui
+
+# COPY . .
+
+# # Build the project and copy the files
+# RUN npm run build
+
+
+# FROM nginx:alpine
+
+# #!/bin/sh
+
+# # COPY ./.nginx/nginx.conf /etc/nginx/nginx.conf
+
+# ## Remove default nginx index page
+# RUN rm -rf /usr/share/nginx/html/*
+
+
+# RUN rm /etc/nginx/conf.d/*
+
+# COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# # Copy from the stahg 1
+# COPY --from=builder /react-ui/build /usr/share/nginx/html
+
+# EXPOSE 3000 80
+
+# ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
+
+# ===========> try 4
 # stage1 as builder
 FROM node:10-alpine as builder
 
@@ -45,15 +88,18 @@ FROM node:10-alpine as builder
 COPY package.json package-lock.json ./
 
 # Install the dependencies and make the folder
-RUN npm install && mkdir /react-ui && mv ./node_modules ./react-ui
+# RUN npm install && mkdir /app && mv ./node_modules ./app
+RUN yarn && mkdir /app && mv ./node_modules ./app
 
-WORKDIR /react-ui
+WORKDIR /app
 
 COPY . .
 
 # Build the project and copy the files
-RUN npm run build
+# RUN npm run build
+RUN yarn build
 
+CMD ["yarn", "start"]
 
 FROM nginx:alpine
 
@@ -70,8 +116,9 @@ RUN rm /etc/nginx/conf.d/*
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Copy from the stahg 1
-COPY --from=builder /react-ui/build /usr/share/nginx/html
+# COPY --from=builder /app/build /usr/share/nginx/html
 
-EXPOSE 3000 80
+EXPOSE 4000 80
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
+
