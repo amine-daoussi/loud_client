@@ -139,10 +139,26 @@
 # COPY . .
 # CMD npm start
 
-FROM node:alpine
-# WORKDIR /app
-COPY package.json ./
-COPY package-lock.json ./
-COPY ./ ./
-RUN yarn 
-CMD ["yarn", "start:node"]
+# FROM node:alpine
+# # WORKDIR /app
+# COPY package.json ./
+# COPY package-lock.json ./
+# COPY ./ ./
+# RUN yarn 
+# CMD ["yarn", "start:node"]
+
+FROM node:10 AS ui-build
+WORKDIR /usr/src/app
+RUN  npm install && npm run build
+COPY . ./my-app/
+
+FROM node:10 AS server-build
+WORKDIR /root/
+COPY --from=ui-build /usr/src/app/my-app/build ./my-app/build
+# COPY api/package*.json ./api/
+# RUN cd api && npm install
+# COPY api/server.js ./api/
+
+EXPOSE 4000
+
+CMD ["node", "./api/server.js"]
