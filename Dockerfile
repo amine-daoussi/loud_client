@@ -85,21 +85,28 @@
 FROM node:10-alpine as builder
 
 # copy the package.json to install dependencies
-COPY package.json package-lock.json ./
+# COPY package.json package-lock.json ./
 
-# Install the dependencies and make the folder
-# RUN npm install && mkdir /app && mv ./node_modules ./app
-RUN yarn && mkdir /app && mv ./node_modules ./app
+# # Install the dependencies and make the folder
+# # RUN npm install && mkdir /app && mv ./node_modules ./app
+# RUN yarn && mkdir /app && mv ./node_modules ./app
+
+# WORKDIR /app
+
+# COPY . .
 
 WORKDIR /app
+COPY package.json ./
+COPY package-lock.json ./
+COPY ./ ./
+RUN yarn 
 
-COPY . .
 
 # Build the project and copy the files
 # RUN npm run build
 RUN yarn build
 
-CMD ["yarn", "start"]
+CMD ["yarn", "start:node"]
 
 FROM nginx:alpine
 
