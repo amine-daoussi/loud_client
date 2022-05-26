@@ -57,7 +57,7 @@ services:
       # - $REACT_LOCAL_PORT:$REACT_DOCKER_PORT
       # - 0.0.0.0:3000:3000
       - 0.0.0.0:4000:4000
-      - 80:80
+      # - 80:80
     networks:
       - frontend
 
