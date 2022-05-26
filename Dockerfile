@@ -149,8 +149,9 @@
 
 FROM node:10 AS ui-build
 WORKDIR /usr/src/app
-RUN  npm install && npm run build
 COPY . ./my-app/
+RUN  cd my-app && npm install && npm run build
+
 
 FROM node:10 AS server-build
 WORKDIR /root/
@@ -161,4 +162,4 @@ COPY --from=ui-build /usr/src/app/my-app/build ./my-app/build
 
 EXPOSE 4000
 
-CMD ["node", "./api/server.js"]
+CMD ["node", "./server.js"]
