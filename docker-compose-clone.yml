@@ -30,6 +30,7 @@ services:
     volumes:
       # - ./loud_server/nginx/:/etc/nginx/conf.d/:ro
       - ./loud_server/nginx/:/etc/nginx/conf.d
+      
     #   - ./loud_server/certbot/www:/var/www/certbot/:ro 
       # - ./loud_server/certbot/conf/:/etc/nginx/ssl/:ro
 
