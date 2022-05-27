@@ -25,17 +25,17 @@ services:
     ports:
       # - "3050:80"
       - "80:80"
-      # - 443:443
-    # volumes:
-    #   - ./loud_server/nginx/conf/:/etc/nginx/conf.d/:ro
+      - "443:443"
+    volumes:
+      - ./loud_server/nginx/:/etc/nginx/conf.d/:ro
     #   - ./loud_server/certbot/www:/var/www/certbot/:ro 
       # - ./loud_server/certbot/conf/:/etc/nginx/ssl/:ro
 
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./loud_server/certbot/www/:/var/www/certbot/:rw
-      - ./loud_server/certbot/conf/:/etc/letsencrypt/:rw
+      - ./loud_server/certbot/www/:/var/www/certbot
+      - ./loud_server/certbot/conf/:/etc/letsencrypt
   # api:
   #   # depends_on:
   #   #   - mongodb
