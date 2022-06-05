@@ -15,14 +15,14 @@ services:
   #   networks:
   #     - backend
   nginx:
-    # image: nginx:1.15-alpine
+    image: nginx:1.15-alpine
     # depends_on:
     #   - api
     #   - client
     restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./loud_server/nginx
+    # build:
+    #   dockerfile: Dockerfile
+    #   context: ./loud_server/nginx
     ports:
       # - "3050:80"
       - "80:80"
