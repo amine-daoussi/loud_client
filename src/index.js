@@ -17,10 +17,10 @@ const store = configureStore(initialState);
 const ROOT = (
   <ThemeProvider>
     <Provider store={store}>
-      <HashRouter>
-        <CssBaseline />
-        <App />
-      </HashRouter>
+      {/* <BrowserRouter> */}
+      <CssBaseline />
+      <App />
+      {/* </BrowserRouter> */}
     </Provider>
   </ThemeProvider>
 );

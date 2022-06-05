@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import { Switch, Route, Redirect , BrowserRouter} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Switch, Route, Redirect, BrowserRouter, HashRouter } from 'react-router-dom';
 import Template from './dumb/Template';
 import LanguageProvider from '../LanguageProvider';
 import English from '../lang/en.json';
@@ -24,33 +24,33 @@ const App = () => {
     de: German,
     en: English,
   };
-  useEffect(()=>{
+  useEffect(() => {
     window.scrollTo(0, 0);
-  },[])
+  }, []);
 
   return (
     <>
       <LanguageProvider locale={lang} messages={messages[lang]}>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/impressum" component={Impressum} />
-          <Template setLang={setLang} lang={lang} openToast={openToast} setOpenToast={setOpenToast}>
-            <Route exact path="/services" render={() => <Services setOpenToast={setOpenToast} lang={lang} />} />
-            <Route exact path="/contact" component={Contact} />
-            <Route exact path="/showroom" component={Showroom} />
-            <Route exact path="/paBundles" render={() => <PaBundles setOpenToast={setOpenToast} lang={lang} />} />
-            <Route
-              exact
-              path="/monitoringBundle"
-              render={() => <MonitoringBundle setOpenToast={setOpenToast} lang={lang} />}
-            />
-            <Route exact path="/powerack" render={() => <Powerack setOpenToast={setOpenToast} lang={lang} />} />
-            <Route exact path="/laser" render={() => <Laser setOpenToast={setOpenToast} lang={lang} />} />
-            <Route exact path="/event" component={Event} />
-            <Route exact path="/" component={Home} />
-            <Route render={() => <Redirect to={{ pathname: '/' }} />} />
-          </Template>
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/impressum" component={Impressum} />
+            <Template setLang={setLang} lang={lang} openToast={openToast} setOpenToast={setOpenToast}>
+              <Route exact path="/services" render={() => <Services setOpenToast={setOpenToast} lang={lang} />} />
+              <Route exact path="/contact" component={Contact} />
+              <Route exact path="/showroom" component={Showroom} />
+              <Route exact path="/paBundles" render={() => <PaBundles setOpenToast={setOpenToast} lang={lang} />} />
+              <Route
+                exact
+                path="/monitoringBundle"
+                render={() => <MonitoringBundle setOpenToast={setOpenToast} lang={lang} />}
+              />
+              <Route exact path="/powerack" render={() => <Powerack setOpenToast={setOpenToast} lang={lang} />} />
+              <Route exact path="/laser" render={() => <Laser setOpenToast={setOpenToast} lang={lang} />} />
+              <Route exact path="/event" component={Event} />
+              <Route exact path="/" component={Home} />
+              {/* <Route render={() => <Redirect to={{ pathname: '/' }} />} /> */}
+            </Template>
+          </Switch>
         </BrowserRouter>
       </LanguageProvider>
     </>
