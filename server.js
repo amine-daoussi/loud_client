@@ -17,7 +17,7 @@ app.get('/ping', (req, res) => {
 //   res.json(" test welcome");
 // });
 
-app.post('api/mail/forma', (req, res) => {
+app.post('/api/mail/forma', (req, res) => {
   let data = req.body;
   let smtpTransport = nodemailer.createTransport({
     service: 'Gmail',
