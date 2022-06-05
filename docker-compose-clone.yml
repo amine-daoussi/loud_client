@@ -20,9 +20,9 @@ services:
     #   - api
     #   - client
     restart: always
-    # build:
-    #   dockerfile: Dockerfile
-    #   context: ./loud_server/nginx
+    build:
+      dockerfile: Dockerfile
+      context: ./loud_server/nginx
     ports:
       # - "3050:80"
       - "80:80"
