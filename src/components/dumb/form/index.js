@@ -32,7 +32,7 @@ const MailForm = ({ handleClose, setOpenToast, product }) => {
   console.log('mailResponse', mailResponse);
 
   const sendMail = data => {
-    return fetch('/api/forma', {
+    return fetch('/mail/forma', {
       // return fetch('/api/forma', {
       method: 'POST',
       headers: {
