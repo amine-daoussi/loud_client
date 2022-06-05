@@ -48,6 +48,7 @@ app.post('/api/mail/forma', (req, res) => {
   };
   console.log('send emailstart 2');
   smtpTransport.sendMail(mailOptions, (error, response) => {
+    console.log('send process :', response);
     if (error) {
       console.log('send email error:', error);
       res.send(error);
