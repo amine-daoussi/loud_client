@@ -18,6 +18,7 @@ app.get('/ping', (req, res) => {
 // });
 
 app.post('/api/mail/forma', (req, res) => {
+  console.log('send email start');
   let data = req.body;
   let smtpTransport = nodemailer.createTransport({
     service: 'Gmail',
@@ -45,13 +46,17 @@ app.post('/api/mail/forma', (req, res) => {
     <p>${data.message}</p>      
     `,
   };
+  console.log('send emailstart 2');
   smtpTransport.sendMail(mailOptions, (error, response) => {
     if (error) {
+      console.log('send email error:', error);
       res.send(error);
     } else {
+      console.log('send email Success');
       res.send('Success');
     }
   });
+  console.log('end');
   smtpTransport.close();
 });
 
