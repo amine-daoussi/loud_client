@@ -30,7 +30,8 @@ app.post('mail/forma', (req, res) => {
   });
   let mailOptions = {
     from: data.email,
-    to: 'loudAndClearAnalysis@gmail.com',
+    // to: 'loudAndClearAnalysis@gmail.com',
+    to: 'walidmsallem@gmail.com',
     subject: `Request from ${data.firstname} ${data.lastname}, product: ${data.product}`,
     html: `
     <h3>Customer Informations</h3>

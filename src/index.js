@@ -1,6 +1,6 @@
 import React from 'react';
 import './fonts.css';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
@@ -17,10 +17,10 @@ const store = configureStore(initialState);
 const ROOT = (
   <ThemeProvider>
     <Provider store={store}>
-      <BrowserRouter>
+      <HashRouter>
         <CssBaseline />
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>
   </ThemeProvider>
 );
